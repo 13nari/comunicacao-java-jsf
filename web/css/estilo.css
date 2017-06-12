@@ -1,0 +1,57 @@
+
+body
+{
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+
+#pag
+{
+    width:1024px;
+    margin-top:10px;
+    margin:0 auto;
+}
+
+#logo
+{
+    width: 200px;
+    height: 170px;
+    float:left;
+    background-image: url("../images/backgrounds/BackgroundLogo.png");
+}
+
+#banner
+{
+    width: 824px;
+    height: 170px;
+    float:left;
+    background-image: url("../images/backgrounds/BackgroundBanner.png");
+    text-align: left;
+}
+
+#menu
+{
+    width: 200px;
+    height: 370px;
+    float:left;
+    background-image: url("../images/backgrounds/BackgroundMenu.png");
+}
+
+#conteudo
+{
+    width: 824px;
+    height: 370px;
+    float:left;
+    background-image: url("../images/backgrounds/BackgroundConteudo.png");
+}
+
+#rodape
+{
+    width: 1024px;
+    height: 50px;
+    float:left;
+    background-image: url("../images/backgrounds/BackgroundRodape.png");
+}
+
+

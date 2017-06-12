@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Cadastrar Funcionário</title>
+        <link rel="stylesheet" type="text/css" href="css/estilo.css" />
+    </h:head>
+
+    <h:body>
+
+        <div id="pag">
+
+            <div id="logo"> 
+
+
+            </div>
+
+            <div id="banner" style ="text-align:center;">
+
+                <div align="center" id="titulo">
+
+                </div>
+
+            </div>
+
+            <div id="menu">
+                <h:form>
+                    <p:growl id="growl" showDetail="true" /> 
+                    <p:panelMenu style="width: 190px;height: 370px;">
+                        <p:submenu label ="Funcionarios">
+                            <p:menuitem value="Cadastrar" action="#{funcionarioDAO.reset()}" outcome="cadastrarFuncionario.xhtml" />
+                            <p:menuitem value="Editar/Deletar" onclick="PF('dlg2').show();"/>           
+                        </p:submenu>
+                        <p:submenu label="Projetos">
+                            <p:menuitem value="Cadastrar" outcome="cadastrarProjeto.xhtml" />
+                            <p:menuitem value="Editar/Deletar" onclick="PF('dlg5').show();"/>
+                        </p:submenu>
+                    </p:panelMenu>
+                    
+                    <p:dialog header="Pesquisar funcionario" height="150" showEffect="fade" hideEffect="fade" widgetVar="dlg2" modal="true">
+                        <div>
+                            <h:outputText value="Digite o e-mail do funcionário:" />
+                        </div>
+                        <br/>
+                        <div>
+                            <p:inputText size="50" value="#{funcionarioDAO.emailPesquisa}"/>
+                        </div>
+                        <br/>
+                        <div>
+                            <p:commandButton value="Procurar" ajax="false" actionListener="#{funcionarioDAO.popularFuncionario()}" action="editarFuncionario.xhtml"/>
+                            &nbsp;
+                            <p:commandButton value="Cancelar" ajax="false" action="#{funcionarioDAO.reset()}"/>
+                        </div>
+                    </p:dialog>
+                    
+                   
+                    
+                    <p:dialog header="Pesquisar projeto" height="150" showEffect="fade" hideEffect="fade" widgetVar="dlg5" modal="true">
+                        <div>
+                            <h:outputText value="Digite o nome do projeto:" />
+                        </div>
+                        <br/>
+                        <div>
+                            <p:inputText size="50" value="#{projetoDAO.nomePesquisa}"/>
+                        </div>
+                        <br/>
+                        <div>
+                            <p:commandButton value="Procurar" ajax="false" actionListener="#{projetoDAO.popularProjeto()}" action="editarProjeto.xhtml"/>
+                            &nbsp;
+                            <p:commandButton value="Cancelar" ajax="false" action="#{projetoDAO.reset()}"/>
+                        </div>
+                    </p:dialog>                                
+                </h:form>
+            </div>
+
+            <div id="conteudo">
+                <h:form>
+                    <p:growl id="growl" showDetail="true" sticky="true" />
+                    <p:panel header="Cadastrar Funcionario" style="width: 800px">
+                        <div align="left">
+                            <h:outputText value="Nome:"/>
+                            <p:inputText size="70" value="#{funcionarioDAO.nome}"/>
+                        </div> 
+                        <br/>
+                        <div align="left">
+                            <h:outputText value="E-mail:"/>
+                            <p:inputText size="70" value="#{funcionarioDAO.email}"/>                         
+                        </div>
+                        <br/>
+                        <div align="left">
+                            <h:outputText value="Endereço:"/>
+                            <p:inputText size="65" value="#{funcionarioDAO.endereco}"/>
+                        </div>
+                        <br/>
+                        <div align="left">
+                            <h:outputText value="Cidade:"/>
+                            <p:inputText size="45" value="#{funcionarioDAO.cidade}"/>
+                            &nbsp;
+                            <h:outputText value="Estado:"/>
+                            <p:inputText size="10" value="#{funcionarioDAO.estado}"/>
+                        </div>
+                        <br/>
+                        <div align="left">
+                            <h:outputText value="Tel.:"/>
+                            <p:inputText size="40" value="#{funcionarioDAO.telefone}"/>
+                            &nbsp;
+                            <p:outputLabel for="console" value="Projeto:" />
+                            &nbsp;
+                            <p:selectOneMenu id="console" value="#{funcionarioDAO.console}" style="width:200px; alignment-baseline: before-edge">
+                                <f:selectItems value="#{projetoDAO.popularMenu()}" />
+                            </p:selectOneMenu>
+                        </div>
+                        <br/>
+                        <div>
+                            <p:commandButton value="Cadastrar" ajax="false" action="#{SubscriberDAO.cadastrar()}" actionListener="#{growlView.saveMessage}" update="growl" onclick="growl"/>
+                            
+                            <p:commandButton value="Voltar" ajax="false" action="index.xhtml"/>
+                        </div>
+                    </p:panel>                    
+                </h:form>   
+            </div>
+
+            <div id="rodape">
+
+            </div>
+
+        </div>
+
+        <br />
+
+    </h:body>
+
+</html>
+
